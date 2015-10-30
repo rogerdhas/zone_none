@@ -668,7 +668,7 @@ function loadZoneNoneCharts()
         	alert(data);
         	var parsed_data = JSON.parse(data);
         	alert(parsed_data);
-        	displayZoneNone(data);
+        	displayZoneNone(parsed_data);
         },
         error : function(data){
             $(".modal-error").html("Error :"+ data);
@@ -678,7 +678,7 @@ function loadZoneNoneCharts()
 }
 
 function displayZoneNone(data){
-	jQuery(this).each(data, function(i, item){
+	$.each(data, function(i, item){
 		alert(item.total);
 	});
 }

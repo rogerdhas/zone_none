@@ -116,7 +116,7 @@ public class InitService {
 		Statement stmt = con.createStatement();
 		String sql = "select BROWSER_TYPE, count(BROWSER_TYPE) as total from APP_BROWSER GROUP BY BROWSER_TYPE;";
 		ResultSet rs = stmt.executeQuery(sql);
-		List<JSONObject> list = new ArrayList<>();
+		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
 		while (rs.next()) {
 			System.out.println(rs.getString("BROWSER_TYPE") + " :: " + rs.getInt("total"));
@@ -135,7 +135,7 @@ public class InitService {
 		Statement stmt = con.createStatement();
 		String sql = "select APP_NAME, count(*) as total from APP_BROWSER GROUP BY APP_NAME";
 		ResultSet rs = stmt.executeQuery(sql);
-		List<JSONObject> list = new ArrayList<>();
+		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
 		while (rs.next()) {
 			System.out.println(rs.getString("APP_NAME") + " :: " + rs.getInt("total"));
@@ -153,7 +153,7 @@ public class InitService {
 		Statement stmt = con.createStatement();
 		String sql = "select DEVICE_TYPE, count(DEVICE_TYPE) as total from DEVICE_DETAILS GROUP BY DEVICE_TYPE;";
 		ResultSet rs = stmt.executeQuery(sql);
-		List<JSONObject> list = new ArrayList<>();
+		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
 		while (rs.next()) {
 			System.out.println(rs.getString("DEVICE_TYPE") + " :: " + rs.getInt("total"));
@@ -171,7 +171,7 @@ public class InitService {
 		Statement stmt = con.createStatement();
 		String sql = "select DEVICE_MODEL, count(DEVICE_MODEL) as total from DEVICE_DETAILS GROUP BY DEVICE_MODEL;";
 		ResultSet rs = stmt.executeQuery(sql);
-		List<JSONObject> list = new ArrayList<>();
+		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
 		while (rs.next()) {
 			System.out.println(rs.getString("DEVICE_MODEL") + " :: " + rs.getInt("total"));
@@ -189,7 +189,7 @@ public class InitService {
 		Statement stmt = con.createStatement();
 		String sql = "select DEVICE_BRAND, count(DEVICE_BRAND) as total from DEVICE_DETAILS GROUP BY DEVICE_BRAND;";
 		ResultSet rs = stmt.executeQuery(sql);
-		List<JSONObject> list = new ArrayList<>();
+		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
 		while (rs.next()) {
 			System.out.println(rs.getString("DEVICE_BRAND") + " :: " + rs.getInt("total"));
@@ -200,14 +200,14 @@ public class InitService {
 		}
 		stmt.close();
 		String jsonStr = list.toString();
-		return jsonStr;
+		return jsonStr.replace("[", "").replace("]", "");
 	}
 
 	public String selectos() throws SQLException, JSONException {
 		Statement stmt = con.createStatement();
 		String sql = "select OS, count(OS) as total from DEVICE_DETAILS GROUP BY OS;";
 		ResultSet rs = stmt.executeQuery(sql);
-		List<JSONObject> list = new ArrayList<>();
+		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
 		while (rs.next()) {
 			System.out.println(rs.getString("OS") + " :: " + rs.getInt("total"));

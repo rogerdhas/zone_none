@@ -38,7 +38,7 @@ public class InsertDataMain {
 		Statement stmt = con.createStatement();
 		String sql = "select DEVICE_BRAND, count(DEVICE_BRAND) as total from DEVICE_DETAILS GROUP BY DEVICE_BRAND;";
 		ResultSet rs = stmt.executeQuery(sql);
-		List<JSONObject> list = new ArrayList<>();
+		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
 		while (rs.next()) {
 			System.out.println(rs.getString("DEVICE_BRAND") + " :: " + rs.getInt("total"));
@@ -49,7 +49,7 @@ public class InsertDataMain {
 		}
 		stmt.close();
 		String jsonStr = list.toString();
-		System.out.println(jsonStr);
+		System.out.println(jsonStr.replace("[", "").replace("]", ""));
 		return jsonStr;
 	}
 
