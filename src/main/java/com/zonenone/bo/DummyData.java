@@ -61,7 +61,7 @@ public class DummyData {
 			sql = "CREATE TABLE IF NOT EXISTS DEVICE_DETAILS(USER_ID TEXT, DEVICE_TYPE TEXT, DEVICE_BRAND TEXT,"
 					+ " DEVICE_MODEL TEXT, OS TYPE);";
 			stmt.executeUpdate(sql);
-			for (int idx = 1; idx <= 100; ++idx) {
+			for (int idx = 1; idx <= 10000; ++idx) {
 				int randomInt = randomGenerator.nextInt(100);
 
 				sql = "INSERT INTO USER_AGENT (USER_ID,USER_AGENT,SCREEN_HEIGHT,OFFSET,SCREEN_WIDTH,CLIENT_IP_ADDR,LOC) "

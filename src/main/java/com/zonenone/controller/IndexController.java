@@ -127,6 +127,8 @@ public class IndexController {
 			str = initService.selectBrand();
 		} else if (dataTyp.equalsIgnoreCase("os")) {
 			str = initService.selectos();
+		}else if (dataTyp.equalsIgnoreCase("loadTime")) {
+			str = initService.loadTime();
 		}
 		return str;
 

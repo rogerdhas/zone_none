@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -118,9 +119,11 @@ public class InitService {
 		ResultSet rs = stmt.executeQuery(sql);
 		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
+		int count=1;
 		while (rs.next()) {
 			System.out.println(rs.getString("BROWSER_TYPE") + " :: " + rs.getInt("total"));
 			jsonObj = new JSONObject();
+			jsonObj.put("count", count++);
 			jsonObj.put("name", rs.getString("BROWSER_TYPE"));
 			jsonObj.put("total", rs.getInt("total"));
 			list.add(jsonObj);
@@ -137,9 +140,11 @@ public class InitService {
 		ResultSet rs = stmt.executeQuery(sql);
 		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
+		int count=1;
 		while (rs.next()) {
 			System.out.println(rs.getString("APP_NAME") + " :: " + rs.getInt("total"));
 			jsonObj = new JSONObject();
+			jsonObj.put("count", count++);
 			jsonObj.put("name", rs.getString("APP_NAME"));
 			jsonObj.put("total", rs.getInt("total"));
 			list.add(jsonObj);
@@ -155,9 +160,11 @@ public class InitService {
 		ResultSet rs = stmt.executeQuery(sql);
 		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
+		int count=1;
 		while (rs.next()) {
 			System.out.println(rs.getString("DEVICE_TYPE") + " :: " + rs.getInt("total"));
 			jsonObj = new JSONObject();
+			jsonObj.put("count", count++);
 			jsonObj.put("name", rs.getString("DEVICE_TYPE"));
 			jsonObj.put("total", rs.getInt("total"));
 			list.add(jsonObj);
@@ -173,9 +180,11 @@ public class InitService {
 		ResultSet rs = stmt.executeQuery(sql);
 		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
+		int count=1;
 		while (rs.next()) {
 			System.out.println(rs.getString("DEVICE_MODEL") + " :: " + rs.getInt("total"));
 			jsonObj = new JSONObject();
+			jsonObj.put("count", count++);
 			jsonObj.put("name", rs.getString("DEVICE_MODEL"));
 			jsonObj.put("total", String.valueOf(rs.getInt("total")));
 			list.add(jsonObj);
@@ -191,16 +200,18 @@ public class InitService {
 		ResultSet rs = stmt.executeQuery(sql);
 		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
+		int count=1;
 		while (rs.next()) {
 			System.out.println(rs.getString("DEVICE_BRAND") + " :: " + rs.getInt("total"));
 			jsonObj = new JSONObject();
+			jsonObj.put("count", count++);
 			jsonObj.put("name", rs.getString("DEVICE_BRAND"));
 			jsonObj.put("total", rs.getInt("total"));
 			list.add(jsonObj);
 		}
 		stmt.close();
 		String jsonStr = list.toString();
-		return jsonStr.replace("[", "").replace("]", "");
+		return jsonStr;
 	}
 
 	public String selectos() throws SQLException, JSONException {
@@ -209,15 +220,40 @@ public class InitService {
 		ResultSet rs = stmt.executeQuery(sql);
 		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
+		int count=1;
 		while (rs.next()) {
 			System.out.println(rs.getString("OS") + " :: " + rs.getInt("total"));
 			jsonObj = new JSONObject();
+			jsonObj.put("count", count++);
 			jsonObj.put("name", rs.getString("OS"));
 			jsonObj.put("total", rs.getInt("total"));
 			list.add(jsonObj);
 		}
 		stmt.close();
 		String jsonStr = list.toString();
+		return jsonStr;
+	}
+
+	public String loadTime() throws SQLException, JSONException {
+		Statement stmt = con.createStatement();
+		String sql = "select USER_AGENT, avg(DURATION) as duration, avg(LOAD_TIME) as loadTime from APP_BROWSER GROUP BY USER_AGENT;";
+		ResultSet rs = stmt.executeQuery(sql);
+		List<JSONObject> list = new ArrayList<JSONObject>();
+		JSONObject jsonObj = null;
+		int count=1;
+		String[] refurl = { "index.do", "contact.html", "sitemesh.jsp", "contact.do", "admin.do", "createUser.do", "editUser.do", "test.do", "connectUrl.do" };
+		while (rs.next()) {
+			jsonObj = new JSONObject();
+			jsonObj.put("count", count++);
+			jsonObj.put("pageName", (refurl[new Random().nextInt(refurl.length)]).concat("?").concat("dat=").concat(String.valueOf(rs.getInt("duration"))));
+			jsonObj.put("name", rs.getString("USER_AGENT"));
+			jsonObj.put("duration", rs.getInt("duration"));
+			jsonObj.put("loadTime", rs.getInt("loadTime"));
+			list.add(jsonObj);
+		}
+		stmt.close();
+		String jsonStr = list.toString();
+		System.out.println(jsonStr);
 		return jsonStr;
 	}
 

@@ -27,13 +27,33 @@ public class InsertDataMain {
 		//selectBrandName();
 		//totalVisitors();
 		//selectBrand();
-		selectBrands();
+		//selectBrands();
 		//selectDeviceType();
 		//selectMODEL();
 		//selectos();
+		loadTime();
 		stmt.close();
 	}
 
+	private static String loadTime() throws SQLException, JSONException {
+		Statement stmt = con.createStatement();
+		String sql = "select APP_NAME, avg(DURATION) as duration, avg(LOAD_TIME) as loadTime from APP_BROWSER GROUP BY APP_NAME;";
+		ResultSet rs = stmt.executeQuery(sql);
+		List<JSONObject> list = new ArrayList<JSONObject>();
+		JSONObject jsonObj = null;
+		while (rs.next()) {
+			jsonObj = new JSONObject();
+			jsonObj.put("name", rs.getString("APP_NAME"));
+			jsonObj.put("duration", rs.getInt("duration"));
+			jsonObj.put("loadTime", rs.getInt("loadTime"));
+			list.add(jsonObj);
+		}
+		stmt.close();
+		String jsonStr = list.toString();
+		System.out.println(jsonStr);
+		return jsonStr;
+	}
+	
 	private static String selectBrands() throws SQLException, JSONException {
 		Statement stmt = con.createStatement();
 		String sql = "select DEVICE_BRAND, count(DEVICE_BRAND) as total from DEVICE_DETAILS GROUP BY DEVICE_BRAND;";

@@ -74,7 +74,7 @@
 					<a href="#"><i class="fa fa-globe"></i></a>-->
 				</div>
 				<h4 class="page-header">Visitor Browser</h4>
-				<table id="ticker-table"
+				<table id="ticker-table visitorTable"
 					class="table m-table table-bordered  table-heading">
 					<thead>
 						<tr>
@@ -651,11 +651,12 @@
 			clearTimeout(graphxChartsResize);
 			graphxChartsResize = setTimeout(DrawAllxCharts, 500);
 		});
+		loadZoneNoneCharts();
 		WinMove();
 	});
 </script>
 <script>
-loadZoneNoneCharts();
+
 function loadZoneNoneCharts()
 {
  	$.ajax({
@@ -665,9 +666,7 @@ function loadZoneNoneCharts()
     		planNme : "dummy"
     	},
         success: function(data){
-        	alert(data);
         	var parsed_data = JSON.parse(data);
-        	alert(parsed_data);
         	displayZoneNone(parsed_data);
         },
         error : function(data){
@@ -679,7 +678,7 @@ function loadZoneNoneCharts()
 
 function displayZoneNone(data){
 	$.each(data, function(i, item){
-		alert(item.total);
+		$("#ticker-table  > tbody").append("<tr><td class=\"m-ticker\"><b>Safari</b></td><td class=\"m-price\">303</td><td class=\"m-change\">140</td><td class=\"td-graph\"></td></tr>");
 	});
 }
 </script>
