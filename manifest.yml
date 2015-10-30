@@ -1,0 +1,6 @@
+applications:
+- name: Zone_None
+  instances: 1
+  path: ./target/zonenone.war
+  services:
+    - ZoneMango
