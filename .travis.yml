@@ -1,0 +1,11 @@
+language: java
+install: mvn -X clean test install
+sudo: true
+deploy:
+  provider: cloudfoundry
+  api: https://api.run.pivotal.io
+  username: senthil.retnaswamy@gmail.com
+  password:
+    secure: T0DCFxdZizlQYFIRqybqjMD8/RuEqc2UBobtS+QUe9FlK81fyBE1/hli9GEq04oYOd9Au3brwK4YxCYWCyN+D6z2mbryxVN4IS1yIirmvS2bPXR679AqPeezafpElvhoak7sXpzDyo+Q69hLvo00iEOdDwTgZv6AMQCihjIaD7Rex/AVaJ9CRgbjS8T/izfLC7MourbJjNDQQCZHzgU5dak+S1LGdkAf4pM+s4xkYrsePouXxAQ4nMVADaj/el/+to+NVARMayEXXlr4VY/znYgZbmWqKc7H/pYxrtjpn8qbtXefZ0lLE+6Tm1wjr9jqQKLWMicDoRyJjoI9WHCWEo/nClfZRnyXOM2s9lFEl8YnIvnHkrDXP4U0HpE99uewkKpvcVSwT/n0UW85UESf26BsALsz3DOjHqoAL+EvvCI93tn5jX/ARvEMoApYV/PH4QxjYgIZJhzW26BJdUXI/4AcJd13mGMdnIV8LVE08zDvQ2xXFK6PPtbPd7SQfRz5KqRtztEVNFLFzAJFqfBponW8OctMyi5L3nc4moM6sbyvsLw6IT79iYt+SmsxrloyySiszoW2DftZC4SoXAdv/WvzvjmAwkpCO19jDG3NC/5ZIivx6selOEYb1rxl2mWowxozJtslsnVSQSEfX0btu89HajBiowkP/rbeMQjmahg=
+  organization: Zone_None
+  space: development
