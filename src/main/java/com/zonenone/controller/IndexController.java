@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zonenone.bo.DummyData;
 import com.zonenone.bo.InitService;
 import com.zonenone.utils.ZonoNoneUtills;
 
@@ -95,13 +97,39 @@ public class IndexController {
 
 		initService.dropTable();
 
-		initService.createTable();
+		// initService.createTable();
+		DummyData data = new DummyData();
+		data.insertData();
 
 		// Attach persons to the Model
 		mv.addObject("result", "success");
 
 		// This will resolve to /WEB-INF/jsp/personspage.jsp
 		return "home";
+	}
+
+	@RequestMapping(value = "/matrix.do", method = RequestMethod.GET)
+	@ResponseBody
+	public String matrix(HttpServletRequest request) throws SQLException, JSONException {
+
+		InitService initService = (InitService) appContext.getBean("initService");
+		String dataTyp = request.getParameter("dataTyp");
+		String str = "";
+		if (dataTyp.equalsIgnoreCase("dashboard")) {
+			str = initService.dashboardMatrix();
+		} else if (dataTyp.equalsIgnoreCase("appVisitors")) {
+			str = initService.totalAppVisitors();
+		} else if (dataTyp.equalsIgnoreCase("deviceTyp")) {
+			str = initService.selectDeviceType();
+		} else if (dataTyp.equalsIgnoreCase("deviceModel")) {
+			str = initService.selectMODEL();
+		} else if (dataTyp.equalsIgnoreCase("deviceBrand")) {
+			str = initService.selectBrand();
+		} else if (dataTyp.equalsIgnoreCase("os")) {
+			str = initService.selectos();
+		}
+		return str;
+
 	}
 
 }

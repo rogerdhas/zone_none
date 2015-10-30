@@ -4,9 +4,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.zonenone.utils.ZoneNoneCF;
 import com.zonenone.utils.ZonoNoneUtills;
@@ -55,8 +60,8 @@ public class InitService {
 		String userAgent = ZonoNoneUtills.getUserAgent(request);
 		String browserType = ZonoNoneUtills.getBrowserType(userAgent);
 		Statement stmt = con.createStatement();
-		String selectQuery = "SELECT COUNT(BROWSER_COUNT) as TOTAL_BROWSER_COUNT FROM APP_BROWSER where APP_NAME='" + appName
-				+ "' " + "and BROWSER_TYPE='" + browserType + "' ;";
+		String selectQuery = "SELECT COUNT(BROWSER_COUNT) as TOTAL_BROWSER_COUNT FROM APP_BROWSER where APP_NAME='"
+				+ appName + "' " + "and BROWSER_TYPE='" + browserType + "' ;";
 		System.out.println(selectQuery);
 		ResultSet rs = stmt.executeQuery(selectQuery);
 		int browserCount = 0;
@@ -66,8 +71,13 @@ public class InitService {
 		}
 		if (browserCount == 0) {
 			String sql = "INSERT INTO APP_BROWSER (USER_ID,BROWSER_TYPE,BROWSER_COUNT, USER_AGENT, APP_NAME, DURATION, TITLE, LOAD_TIME) VALUES ('"
-					+ userId + "', '" + browserType + "', " + (++browserCount) + "', '" + userAgent + "', '" + appName
-					+ "', " + duration + "', '" + title + "' " + loadTime + ");";
+					+ userId + "', '" + browserType + "', " + (++browserCount) + ", '" + userAgent + "', '" + appName
+					+ "', " + duration + ", '" + title + "', " + loadTime + ");";
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
+		} else {
+			String sql = "UPDATE APP_BROWSER SET BROWSER_COUNT=" + (++browserCount) + " where USER_ID='" + userId
+					+ "';";
 			System.out.println(sql);
 			stmt.executeUpdate(sql);
 		}
@@ -101,4 +111,114 @@ public class InitService {
 		stmt.executeUpdate(sql);
 		stmt.close();
 	}
+
+	public String dashboardMatrix() throws SQLException, JSONException {
+		Statement stmt = con.createStatement();
+		String sql = "select BROWSER_TYPE, count(BROWSER_TYPE) as total from APP_BROWSER GROUP BY BROWSER_TYPE;";
+		ResultSet rs = stmt.executeQuery(sql);
+		List<JSONObject> list = new ArrayList<>();
+		JSONObject jsonObj = null;
+		while (rs.next()) {
+			System.out.println(rs.getString("BROWSER_TYPE") + " :: " + rs.getInt("total"));
+			jsonObj = new JSONObject();
+			jsonObj.put("name", rs.getString("BROWSER_TYPE"));
+			jsonObj.put("total", rs.getInt("total"));
+			list.add(jsonObj);
+		}
+		System.out.println("test close");
+		stmt.close();
+		String jsonStr = list.toString();
+		return jsonStr;
+	}
+
+	public String totalAppVisitors() throws SQLException, JSONException {
+		Statement stmt = con.createStatement();
+		String sql = "select APP_NAME, count(*) as total from APP_BROWSER GROUP BY APP_NAME";
+		ResultSet rs = stmt.executeQuery(sql);
+		List<JSONObject> list = new ArrayList<>();
+		JSONObject jsonObj = null;
+		while (rs.next()) {
+			System.out.println(rs.getString("APP_NAME") + " :: " + rs.getInt("total"));
+			jsonObj = new JSONObject();
+			jsonObj.put("name", rs.getString("APP_NAME"));
+			jsonObj.put("total", rs.getInt("total"));
+			list.add(jsonObj);
+		}
+		stmt.close();
+		String jsonStr = list.toString();
+		return jsonStr;
+	}
+
+	public String selectDeviceType() throws SQLException, JSONException {
+		Statement stmt = con.createStatement();
+		String sql = "select DEVICE_TYPE, count(DEVICE_TYPE) as total from DEVICE_DETAILS GROUP BY DEVICE_TYPE;";
+		ResultSet rs = stmt.executeQuery(sql);
+		List<JSONObject> list = new ArrayList<>();
+		JSONObject jsonObj = null;
+		while (rs.next()) {
+			System.out.println(rs.getString("DEVICE_TYPE") + " :: " + rs.getInt("total"));
+			jsonObj = new JSONObject();
+			jsonObj.put("name", rs.getString("DEVICE_TYPE"));
+			jsonObj.put("total", rs.getInt("total"));
+			list.add(jsonObj);
+		}
+		stmt.close();
+		String jsonStr = list.toString();
+		return jsonStr;
+	}
+
+	public String selectMODEL() throws SQLException, JSONException {
+		Statement stmt = con.createStatement();
+		String sql = "select DEVICE_MODEL, count(DEVICE_MODEL) as total from DEVICE_DETAILS GROUP BY DEVICE_MODEL;";
+		ResultSet rs = stmt.executeQuery(sql);
+		List<JSONObject> list = new ArrayList<>();
+		JSONObject jsonObj = null;
+		while (rs.next()) {
+			System.out.println(rs.getString("DEVICE_MODEL") + " :: " + rs.getInt("total"));
+			jsonObj = new JSONObject();
+			jsonObj.put("name", rs.getString("DEVICE_MODEL"));
+			jsonObj.put("total", String.valueOf(rs.getInt("total")));
+			list.add(jsonObj);
+		}
+		stmt.close();
+		String jsonStr = list.toString();
+		return jsonStr;
+	}
+
+	public String selectBrand() throws SQLException, JSONException {
+		Statement stmt = con.createStatement();
+		String sql = "select DEVICE_BRAND, count(DEVICE_BRAND) as total from DEVICE_DETAILS GROUP BY DEVICE_BRAND;";
+		ResultSet rs = stmt.executeQuery(sql);
+		List<JSONObject> list = new ArrayList<>();
+		JSONObject jsonObj = null;
+		while (rs.next()) {
+			System.out.println(rs.getString("DEVICE_BRAND") + " :: " + rs.getInt("total"));
+			jsonObj = new JSONObject();
+			jsonObj.put("name", rs.getString("DEVICE_BRAND"));
+			jsonObj.put("total", rs.getInt("total"));
+			list.add(jsonObj);
+		}
+		stmt.close();
+		String jsonStr = list.toString();
+		return jsonStr;
+	}
+
+	public String selectos() throws SQLException, JSONException {
+		Statement stmt = con.createStatement();
+		String sql = "select OS, count(OS) as total from DEVICE_DETAILS GROUP BY OS;";
+		ResultSet rs = stmt.executeQuery(sql);
+		List<JSONObject> list = new ArrayList<>();
+		JSONObject jsonObj = null;
+		while (rs.next()) {
+			System.out.println(rs.getString("OS") + " :: " + rs.getInt("total"));
+			jsonObj = new JSONObject();
+			jsonObj.put("name", rs.getString("OS"));
+			jsonObj.put("total", rs.getInt("total"));
+			list.add(jsonObj);
+		}
+		stmt.close();
+		String jsonStr = list.toString();
+		return jsonStr;
+	}
+
 }

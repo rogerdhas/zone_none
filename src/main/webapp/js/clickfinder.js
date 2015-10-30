@@ -68,6 +68,7 @@ function findUser() {
 			async : true,
 			success : function(r) {
 				setCookie(r);
+				uID = r;
 			},
 			failure : function(r){
 				alert(r);
@@ -102,8 +103,8 @@ function unloadF()
 			cache : false,
 			data : {
 				'd' : (end - lastFocus) + timeFocus,
-				'r' : document.referrer,
-				't' : document.title,
+				'r' : escape(document.referrer),
+				't' : escape(document.title),
 				'u' : uID,
 				'l' : load-start
 			},
