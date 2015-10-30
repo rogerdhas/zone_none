@@ -199,13 +199,13 @@
 		</dependency>
 
 
-		<dependency>
+		<!--<dependency>
 			<groupId>jdk.tools</groupId>
 			<artifactId>jdk.tools</artifactId>
 			<version>1.8.0_65</version>
 			<scope>system</scope>
 			<systemPath>${JAVA_HOME}\lib\tools.jar</systemPath>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 
 	<repositories>
