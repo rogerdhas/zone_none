@@ -305,8 +305,8 @@ public class InitService {
 		JSONObject jsonObj = null;
 		int count=0;
 		while (rs.next()) {
-			++count;
-		}
+			   ++count;
+		}   
 		stmt.close();
 		jsonObj = new JSONObject();
 		jsonObj.put("userCount", count);

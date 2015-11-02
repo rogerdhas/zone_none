@@ -59,6 +59,7 @@ function findUser() {
 	if (uID == null || uID == '') {
 		$.ajax({
 			url : zoneNoneUrlsFind,
+	        type: 'GET',
 			cache : false,
 			data : {
 				'o' : offset,
@@ -100,6 +101,7 @@ function unloadF()
 		end = Date.now();
 		$.ajax({
 			url : zoneNoneUrlsClose,
+	        type: 'GET',
 			cache : false,
 			data : {
 				'd' : (end - lastFocus) + timeFocus,
