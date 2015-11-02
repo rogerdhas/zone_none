@@ -184,7 +184,7 @@ $(document).ready(function() {
 function loadZoneNoneCharts()
 {
  	$.ajax({
-        url: "http://localhost:8081/zonenone/matrix.do?dataTyp=deviceTyp", 
+        url: "/matrix.do?dataTyp=deviceTyp", 
         type: 'GET',
         data: {
     		planNme : "dummy"
@@ -200,7 +200,7 @@ function loadZoneNoneCharts()
  	
 
  	$.ajax({
-        url: "http://localhost:8081/zonenone/matrix.do?dataTyp=deviceModel", 
+        url: "/matrix.do?dataTyp=deviceModel", 
         type: 'GET',
         data: {
     		planNme : "dummy"
@@ -216,7 +216,7 @@ function loadZoneNoneCharts()
  	
 
  	$.ajax({
-        url: "http://localhost:8081/zonenone/matrix.do?dataTyp=deviceBrand", 
+        url: "/matrix.do?dataTyp=deviceBrand", 
         type: 'GET',
         data: {
     		planNme : "dummy"
