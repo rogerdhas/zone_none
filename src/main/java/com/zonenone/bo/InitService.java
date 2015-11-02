@@ -276,5 +276,44 @@ public class InitService {
 		System.out.println(jsonStr);
 		return jsonStr;
 	}
+	
+
+
+	public  String countVisitors() throws SQLException, JSONException {
+		Statement stmt = con.createStatement();
+		String sql = "select count(*) as totalUsers from APP_BROWSER";
+		ResultSet rs = stmt.executeQuery(sql);
+		List<JSONObject> list = new ArrayList<JSONObject>();
+		JSONObject jsonObj = null;
+		int count=1;
+		while (rs.next()) {
+			jsonObj = new JSONObject();
+			jsonObj.put("userCount", rs.getInt("totalUsers"));
+			list.add(jsonObj);
+		}
+		stmt.close();
+		String jsonStr = list.toString();
+		System.out.println(jsonStr);
+		return jsonStr;
+	}
+
+	public  String uniqueVisitors() throws SQLException, JSONException {
+		Statement stmt = con.createStatement();
+		String sql = "select distinct USER_ID as totalUsers from APP_BROWSER";
+		ResultSet rs = stmt.executeQuery(sql);
+		List<JSONObject> list = new ArrayList<JSONObject>();
+		JSONObject jsonObj = null;
+		int count=0;
+		while (rs.next()) {
+			++count;
+		}
+		stmt.close();
+		jsonObj = new JSONObject();
+		jsonObj.put("userCount", count);
+		list.add(jsonObj);
+		String jsonStr = list.toString();
+		System.out.println(jsonStr);
+		return jsonStr;
+	}
 
 }

@@ -122,7 +122,7 @@
 							<td class="td-graph"></td>
 						</tr>
 						<tr>
-							<td class="m-ticker"><b>Crome</b></td>
+							<td class="m-ticker"><b>Chrome</b></td>
 							<td class="m-price">123</td>
 							<td class="m-change">54.3</td>
 							<td class="td-graph"></td>
@@ -148,34 +148,6 @@
 						<div class="v-txt">ACTIVITY</div>
 					</div>
 					<div class="col-xs-7 col-sm-5 col-md-6" id="logTime">
-						<div class="row">
-							<i class="fa fa-code1"></i> Last 30 Min<span
-								class="label label-default pull-right">34</span>
-						</div>
-						<div class="row">
-							<i class="fa fa-cloud-upload1"></i> Last 1 hrs <span
-								class="label label-default pull-right">34</span>
-						</div>
-						<div class="row">
-							<i class="fa fa-camera1"></i> Last 4 hrs <span
-								class="label label-default pull-right">11</span>
-						</div>
-						<div class="row">
-							<i class="fa fa fa-money1"></i> Last 8 hrs <span
-								class="label label-default pull-right">51</span>
-						</div>
-						<div class="row">
-							<i class="fa fa-briefcase1"></i> Last 24 hrs <span
-								class="label label-default pull-right">23</span>
-						</div>
-						<div class="row">
-							<i class="fa fa-floppy-o1"></i> Last 7 days <span
-								class="label label-default pull-right">01</span>
-						</div>
-						<div class="row">
-							<i class="fa fa-bug1"></i> Last 30 days <span
-								class="label label-default pull-right">31</span>
-						</div>
 					</div>
 					<!--<div id="ow-stat" class="col-xs-3 col-sm-4 col-md-4 pull-right">
 						<div class="row"><small><b>Ow Stat.:</b></small></div>
@@ -195,10 +167,10 @@
 							<div class="col-xs-12">
 								<div class="row">
 									<div class="col-xs-6">
-										Total Visitors<b>1245634</b>
+										Total Visitors<b id="totalVisitors"></b>
 									</div>
 									<div class="col-xs-6">
-										Unique Visitors<b>227</b>
+										Unique Visitors<b id="uniqueVisitors"></b>
 									</div>
 								</div>
 								<!--<div class="row">
@@ -671,12 +643,46 @@ function loadZoneNoneCharts()
             $(".modal-error").html("Error :"+ data);
         }
     }); 
+ 	
+ 	$.ajax({
+        url: "/matrix.do?dataTyp=countVisitors", 
+        type: 'GET',
+        data: {
+    		planNme : "dummy"
+    	},
+        success: function(data){
+        	var parsed_data = JSON.parse(data);
+        	$.each(parsed_data, function(i, item){
+        		$("#totalVisitors").append("");
+        	});
+        },
+        error : function(data){
+            $(".modal-error").html("Error :"+ data);
+        }
+    }); 
+ 	
+ 	$.ajax({
+        url: "/matrix.do?dataTyp=uniqueVisitors", 
+        type: 'GET',
+        data: {
+    		planNme : "dummy"
+    	},
+        success: function(data){
+        	var parsed_data = JSON.parse(data);
+        	$.each(parsed_data, function(i, item){
+        		$("#uniqueVisitors").append("");
+        	});
+        },
+        error : function(data){
+            $(".modal-error").html("Error :"+ data);
+        }
+    }); 
  
 }
 
 function displayZoneNone(data){
 	$.each(data, function(i, item){
-		$("#ticker-table  > tbody").append("<tr><td class=\"m-ticker\"><b>"+item.name+"</b></td><td class=\"m-price\">"+item.total+"</td><td class=\"m-change\">140</td><td class=\"td-graph\"></td></tr>");
+		$("#visitorTable > tbody").append("<tr><td class=\"m-ticker\"><b>"+item.name+"</b></td><td class=\"m-price\">"+item.total+"</td><td class=\"m-change\">140</td><td class=\"td-graph\"></td></tr>");
 	});
 }
 function displayZoneNoneLog(data){

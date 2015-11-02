@@ -97,20 +97,20 @@ public class DummyData {
 			//lat 30mins table
 			sql  =" CREATE TABLE IF NOT EXISTS LOG_TIME(LOG_ID INT, LOG_TIME  TEXT, USER_COUNT INT);";
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (1, 'Last 30 Min', 30);";
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (1, 'Last 30 Min', 3);";
 			System.out.println(sql);
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (2,'Last 1 hrs', 34);";
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (2,'Last 1 hrs', 47);";
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (3,'Last 4 hrs', 11);";
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (3,'Last 4 hrs', 0);";
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (4,'Last 8 hrs', 13);";
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (4,'Last 8 hrs', 0);";
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (5,'Last 24 hrs', 51);";
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (5,'Last 24 hrs', 0);";
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (6,'Last 7 days', 12);";
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (6,'Last 7 days', 0);";
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (7,'Last 30 days', 43);";
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (7,'Last 30 days', 0);";
 			stmt.executeUpdate(sql);
 
 			stmt.close();

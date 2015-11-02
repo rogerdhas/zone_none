@@ -131,6 +131,10 @@ public class IndexController {
 			str = initService.loadTime();
 		} else if (dataTyp.equalsIgnoreCase("dashLogTime")) {
 			str = initService.dashBoardLogTime();
+		}else if (dataTyp.equalsIgnoreCase("countVisitors")) {
+			str = initService.countVisitors();
+		}else if (dataTyp.equalsIgnoreCase("uniqueVisitors")) {
+			str = initService.uniqueVisitors();
 		}
 		return str;
 
