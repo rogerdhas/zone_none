@@ -35,9 +35,9 @@ public class InitService {
 		}
 		if (id.equals("0")) {
 			id = save(offset, height, width, ipAddress, userAgent);
-		}
-		System.out.println("ID = " + id);
-		rs.close();
+		} 
+		System.out.println("ID =   " + id);
+		rs.close(); 
 		stmt.close();
 		return id;
 	}
