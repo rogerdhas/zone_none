@@ -288,13 +288,13 @@ public class InitService {
 		int count=1;
 		while (rs.next()) {
 			jsonObj = new JSONObject();
-			jsonObj.put("userCount", rs.getInt("totalUsers"));
+			jsonObj.put("userCount",   rs.getInt("totalUsers"));
 			list.add(jsonObj);     
 		}
 		stmt.close();
 		String jsonStr = list.toString();
 		System.out.println(jsonStr);
-		return jsonStr;
+		return jsonStr;  
 	}
 
 	public  String uniqueVisitors() throws SQLException, JSONException {

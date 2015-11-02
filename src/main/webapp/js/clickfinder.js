@@ -3,8 +3,8 @@ var load = Date.now();
 var lastFocus;
 var offset = new Date().getTimezoneOffset();
 var uID;
-var zoneNoneUrlsFind = "http://localhost:8081/zonenone/s.do"
-var zoneNoneUrlsClose = "http://localhost:8081/zonenone/l.do";
+var zoneNoneUrlsFind = "http://zone-none.cfapps.io/s.do"
+var zoneNoneUrlsClose = "http://zone-none.cfapps.io/l.do";
 jQuery.cookie = function(name, value, options) {
 
 	if (typeof value != 'undefined') { // name and value given, set cookie
