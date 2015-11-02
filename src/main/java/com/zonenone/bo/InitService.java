@@ -281,7 +281,7 @@ public class InitService {
 
 	public  String countVisitors() throws SQLException, JSONException {
 		Statement stmt = con.createStatement();
-		String sql = "select count(*) as totalUsers from APP_BROWSER";
+		String sql = "select count(*) as totalUsers from APP_BROWSER  ";
 		ResultSet rs = stmt.executeQuery(sql);
 		List<JSONObject> list = new ArrayList<JSONObject>();
 		JSONObject jsonObj = null;
