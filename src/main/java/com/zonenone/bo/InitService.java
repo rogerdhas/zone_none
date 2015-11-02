@@ -289,7 +289,7 @@ public class InitService {
 		while (rs.next()) {
 			jsonObj = new JSONObject();
 			jsonObj.put("userCount", rs.getInt("totalUsers"));
-			list.add(jsonObj);
+			list.add(jsonObj);     
 		}
 		stmt.close();
 		String jsonStr = list.toString();

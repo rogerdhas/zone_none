@@ -653,7 +653,7 @@ function loadZoneNoneCharts()
         success: function(data){
         	var parsed_data = JSON.parse(data);
         	$.each(parsed_data, function(i, item){
-        		$("#totalVisitors").append("");
+        		$("#totalVisitors").append(item.userCount);
         	});
         },
         error : function(data){
@@ -670,7 +670,7 @@ function loadZoneNoneCharts()
         success: function(data){
         	var parsed_data = JSON.parse(data);
         	$.each(parsed_data, function(i, item){
-        		$("#uniqueVisitors").append("");
+        		$("#uniqueVisitors").append(item.userCount);
         	});
         },
         error : function(data){
