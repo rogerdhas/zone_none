@@ -655,12 +655,12 @@
 		WinMove();
 	});
 </script>
-<script>
+<script type="text/javascript">
 
 function loadZoneNoneCharts()
 {
  	$.ajax({
-        url: "http://localhost:8081/zonenone/matrix.do?dataTyp=dashboard", 
+        url: "/matrix.do?dataTyp=dashboard", 
         type: 'GET',
         data: {
     		planNme : "dummy"
