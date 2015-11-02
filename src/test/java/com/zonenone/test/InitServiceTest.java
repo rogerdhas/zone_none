@@ -41,7 +41,7 @@ public class InitServiceTest {
 			e.printStackTrace();
 		}
 	}
-
+    
 	@Test
 	public void browser() {
 		InitService initService = new InitService();
