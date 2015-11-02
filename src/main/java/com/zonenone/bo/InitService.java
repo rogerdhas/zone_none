@@ -52,6 +52,13 @@ public class InitService {
 				+ "', '" + userAgent + "');";
 		System.out.println(sql);
 		stmt.executeUpdate(sql);
+		sql = "SELECT USER_COUNT FROM LOG_TIME WHERE LOG_ID=1";
+		ResultSet rs = stmt.executeQuery(sql);
+		int browserCount = 0;
+		while(rs.next()){
+			browserCount = rs.getInt("USER_COUNT");
+		}
+		sql = "UPDATE LOG_TIME SET USER_COUNT="+browserCount+" WHERE LOG_ID=1;";
 		stmt.close();
 		return userId;
 	}

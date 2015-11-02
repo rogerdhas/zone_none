@@ -32,10 +32,10 @@ public class InsertDataMain {
 		//selectMODEL();
 		//selectos();
 		//loadTime();
-		//dashBoardLogTime();
-		countVisitors();
-		uniqueVisitors();
-		zoneNoneUniqueVisitors();
+		dashBoardLogTime();
+		//countVisitors();
+		//uniqueVisitors();
+		//zoneNoneUniqueVisitors();
 		stmt.close();
 	}
 

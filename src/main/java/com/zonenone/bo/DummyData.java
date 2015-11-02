@@ -61,7 +61,7 @@ public class DummyData {
 			sql = "CREATE TABLE IF NOT EXISTS DEVICE_DETAILS(USER_ID TEXT, DEVICE_TYPE TEXT, DEVICE_BRAND TEXT,"
 					+ " DEVICE_MODEL TEXT, OS TYPE);";
 			stmt.executeUpdate(sql);
-			for (int idx = 1; idx <= 1000; ++idx) {
+			for (int idx = 1; idx <= 500; ++idx) {
 				int randomInt = randomGenerator.nextInt(100);
 
 				sql = "INSERT INTO USER_AGENT (USER_ID,USER_AGENT,SCREEN_HEIGHT,OFFSET,SCREEN_WIDTH,CLIENT_IP_ADDR,LOC) "
@@ -102,15 +102,15 @@ public class DummyData {
 			stmt.executeUpdate(sql);
 			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (2,'Last 1 hrs', 47);";
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (3,'Last 4 hrs', 0);";
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (3,'Last 4 hrs', 47);";
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (4,'Last 8 hrs', 0);";
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (4,'Last 8 hrs', 47);";
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (5,'Last 24 hrs', 0);";
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (5,'Last 24 hrs', 47);";
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (6,'Last 7 days', 0);";
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (6,'Last 7 days', 47);";
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (7,'Last 30 days', 0);";
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (7,'Last 30 days', 47);";
 			stmt.executeUpdate(sql);
 
 			stmt.close();
