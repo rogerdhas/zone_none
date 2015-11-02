@@ -64,8 +64,9 @@ public class IndexController {
 
 	@RequestMapping(value = "/s.do", method = RequestMethod.GET)
 	@ResponseBody
-	public String find(HttpServletRequest request) throws SQLException {
-
+	public String find(HttpServletRequest request, HttpServletResponse resp) throws SQLException {
+		resp.addHeader("Access-Control-Allow-Origin", "*");
+		resp.addHeader("Content-Type", "text/html");
 		InitService initService = (InitService) appContext.getBean("initService");
 		String offset = request.getParameter("o");
 		String height = request.getParameter("h");
@@ -77,8 +78,9 @@ public class IndexController {
 
 	@RequestMapping(value = "/l.do", method = RequestMethod.GET)
 	@ResponseBody
-	public void closeBrowser(HttpServletRequest request) throws SQLException {
-
+	public void closeBrowser(HttpServletRequest request, HttpServletResponse resp) throws SQLException {
+		resp.addHeader("Access-Control-Allow-Origin", "*");
+		resp.addHeader("Content-Type", "text/html");
 		InitService initService = (InitService) appContext.getBean("initService");
 		Integer duration = Integer.parseInt(request.getParameter("d"));
 		String appName = request.getParameter("r");
@@ -131,11 +133,11 @@ public class IndexController {
 			str = initService.loadTime();
 		} else if (dataTyp.equalsIgnoreCase("dashLogTime")) {
 			str = initService.dashBoardLogTime();
-		}else if (dataTyp.equalsIgnoreCase("countVisitors")) {
+		} else if (dataTyp.equalsIgnoreCase("countVisitors")) {
 			str = initService.countVisitors();
-		}else if (dataTyp.equalsIgnoreCase("uniqueVisitors")) {
+		} else if (dataTyp.equalsIgnoreCase("uniqueVisitors")) {
 			str = initService.uniqueVisitors();
-		}else if (dataTyp.equalsIgnoreCase("zoneNoneUniqueVisitors")) {
+		} else if (dataTyp.equalsIgnoreCase("zoneNoneUniqueVisitors")) {
 			str = initService.zoneNoneUniqueVisitors();
 		}
 		return str;
