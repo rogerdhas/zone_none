@@ -45,7 +45,7 @@ public class DummyData {
 					"197.234.240.", "198.41.128.17", "199.27.128.21" };
 
 			String[] BROWSER_TYPE = { "IE", "Firefox", "Chrome", "Safari" };
-			String[] refurl = { "google.com", "oracle.com", "verizon.com" };
+			String[] refurl = { "google.com", "oracle.com", "verizon.com", "zonenone-demo.cfapps.io" };
 			String[] userId = { "91827981745", "91879285", "1123498279485", "183759187359" };
 			String[] DEVICE_TYPE = { "Firefox", "Chrome", "Opera" };
 			String[] DEVICE_MODEL = { "Apple ipad", "Motorola", "Lenovo" };
@@ -61,7 +61,7 @@ public class DummyData {
 			sql = "CREATE TABLE IF NOT EXISTS DEVICE_DETAILS(USER_ID TEXT, DEVICE_TYPE TEXT, DEVICE_BRAND TEXT,"
 					+ " DEVICE_MODEL TEXT, OS TYPE);";
 			stmt.executeUpdate(sql);
-			for (int idx = 1; idx <= 50000; ++idx) {
+			for (int idx = 1; idx <= 1000; ++idx) {
 				int randomInt = randomGenerator.nextInt(100);
 
 				sql = "INSERT INTO USER_AGENT (USER_ID,USER_AGENT,SCREEN_HEIGHT,OFFSET,SCREEN_WIDTH,CLIENT_IP_ADDR,LOC) "

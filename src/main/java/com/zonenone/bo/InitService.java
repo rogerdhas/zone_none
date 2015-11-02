@@ -316,4 +316,23 @@ public class InitService {
 		return jsonStr;
 	}
 
+	public String zoneNoneUniqueVisitors() throws SQLException, JSONException {
+		Statement stmt = con.createStatement();
+		String sql = "select distinct USER_ID as totalUsers from APP_BROWSER where APP_NAME='zonenone-demo.cfapps.io'";
+		ResultSet rs = stmt.executeQuery(sql);
+		List<JSONObject> list = new ArrayList<JSONObject>();
+		JSONObject jsonObj = null;
+		int count=0;
+		while (rs.next()) {
+			++count;
+		}
+		stmt.close();
+		jsonObj = new JSONObject();
+		jsonObj.put("userCount", count);
+		list.add(jsonObj);
+		String jsonStr = list.toString();
+		System.out.println(jsonStr);
+		return jsonStr;
+	}
+
 }

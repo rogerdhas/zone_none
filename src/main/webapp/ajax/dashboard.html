@@ -198,7 +198,7 @@
 								<tbody>
 									<tr>
 										<td style="align: left"><b>zonenone-demo.cfapps.io</b></td>
-										<td class="m-price">33</td>
+										<td class="m-price"><div id="zoneUniqueVisitors"></div></td>
 
 									</tr>
 							</table>
@@ -670,6 +670,23 @@ function loadZoneNoneCharts()
         success: function(data){
         	var parsed_data = JSON.parse(data);
         	$.each(parsed_data, function(i, item){
+        		$("#zoneUniqueVisitors").append(item.userCount);
+        	});
+        },
+        error : function(data){
+            $(".modal-error").html("Error :"+ data);
+        }
+    });  
+ 	
+ 	$.ajax({
+        url: "/matrix.do?dataTyp=zoneNoneUniqueVisitors", 
+        type: 'GET',
+        data: {
+    		planNme : "dummy"
+    	},
+        success: function(data){
+        	var parsed_data = JSON.parse(data);
+        	$.each(parsed_data, function(i, item){
         		$("#uniqueVisitors").append(item.userCount);
         	});
         },
@@ -677,6 +694,8 @@ function loadZoneNoneCharts()
             $(".modal-error").html("Error :"+ data);
         }
     }); 
+ 	
+ 	
  
 }
 

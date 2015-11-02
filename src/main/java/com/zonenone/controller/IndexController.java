@@ -135,6 +135,8 @@ public class IndexController {
 			str = initService.countVisitors();
 		}else if (dataTyp.equalsIgnoreCase("uniqueVisitors")) {
 			str = initService.uniqueVisitors();
+		}else if (dataTyp.equalsIgnoreCase("zoneNoneUniqueVisitors")) {
+			str = initService.zoneNoneUniqueVisitors();
 		}
 		return str;
 
