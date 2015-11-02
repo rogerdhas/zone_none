@@ -257,4 +257,24 @@ public class InitService {
 		return jsonStr;
 	}
 
+	public String dashBoardLogTime() throws SQLException, JSONException {
+		Statement stmt = con.createStatement();
+		String sql = "select * from LOG_TIME order by LOG_ID asc;";
+		ResultSet rs = stmt.executeQuery(sql);
+		List<JSONObject> list = new ArrayList<JSONObject>();
+		JSONObject jsonObj = null;
+		int count=1;
+		while (rs.next()) {
+			jsonObj = new JSONObject();
+			jsonObj.put("count", count++);
+			jsonObj.put("logTime", rs.getString("LOG_TIME"));
+			jsonObj.put("userCount", rs.getInt("USER_COUNT"));
+			list.add(jsonObj);
+		}
+		stmt.close();
+		String jsonStr = list.toString();
+		System.out.println(jsonStr);
+		return jsonStr;
+	}
+
 }

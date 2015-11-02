@@ -61,7 +61,7 @@ public class DummyData {
 			sql = "CREATE TABLE IF NOT EXISTS DEVICE_DETAILS(USER_ID TEXT, DEVICE_TYPE TEXT, DEVICE_BRAND TEXT,"
 					+ " DEVICE_MODEL TEXT, OS TYPE);";
 			stmt.executeUpdate(sql);
-			for (int idx = 1; idx <= 10000; ++idx) {
+			for (int idx = 1; idx <= 50; ++idx) {
 				int randomInt = randomGenerator.nextInt(100);
 
 				sql = "INSERT INTO USER_AGENT (USER_ID,USER_AGENT,SCREEN_HEIGHT,OFFSET,SCREEN_WIDTH,CLIENT_IP_ADDR,LOC) "
@@ -93,6 +93,25 @@ public class DummyData {
 				System.out.println(sql);
 				stmt.executeUpdate(sql);
 			}
+			
+			//lat 30mins table
+			sql  =" CREATE TABLE IF NOT EXISTS LOG_TIME(LOG_ID INT, LOG_TIME  TEXT, USER_COUNT INT);";
+			stmt.executeUpdate(sql);
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (1, 'Last 30 Min', 30);";
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (2,'Last 1 hrs', 34);";
+			stmt.executeUpdate(sql);
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (3,'Last 4 hrs', 11);";
+			stmt.executeUpdate(sql);
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (4,'Last 8 hrs', 13);";
+			stmt.executeUpdate(sql);
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (5,'Last 24 hrs', 51);";
+			stmt.executeUpdate(sql);
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (6,'Last 7 days', 12);";
+			stmt.executeUpdate(sql);
+			sql = "INSERT INTO LOG_TIME (LOG_ID,LOG_TIME, USER_COUNT) VALUES (7,'Last 30 days', 43);";
+			stmt.executeUpdate(sql);
 
 			stmt.close();
 		} catch (Exception e) {
