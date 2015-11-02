@@ -44,7 +44,7 @@ public class InitService {
 
 	public String save(String offSet, String height, String width, String ipAddress, String userAgent)
 			throws SQLException {
-		UUID id = UUID.randomUUID();
+		UUID id = UUID.randomUUID();   
 		String userId = String.valueOf(id);
 		Statement stmt = con.createStatement();
 		String sql = "INSERT INTO user_agent (USER_ID,OFFSET,SCREEN_HEIGHT,SCREEN_WIDTH, CLIENT_IP_ADDR, USER_AGENT) "
